@@ -114,3 +114,6 @@ mode: 0771
 user: AID_MEDIA
 group: AID_MEDIA
 caps: 0
+
+[AID_VENDOR_QRTR]
+value:2906
