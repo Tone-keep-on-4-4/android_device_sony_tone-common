@@ -215,7 +215,6 @@ PRODUCT_PACKAGES += \
     libcurl \
     libgnss \
     libgnsspps \
-    libsensorndkbridge
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
