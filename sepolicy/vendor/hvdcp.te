@@ -1,2 +1,4 @@
 # Allow hvdcp to read sysfs
 allow hvdcp sysfs:file r_file_perms;
+
+dontaudit hvdcp self:capability { dac_override };
