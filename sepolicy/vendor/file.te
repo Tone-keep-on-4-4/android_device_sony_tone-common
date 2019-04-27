@@ -17,3 +17,6 @@ type tad_socket, file_type;
 
 # Fingerprint
 type sysfs_fingerprint, sysfs_type, fs_type;
+
+# persist
+type persist_wlan_file, file_type;
