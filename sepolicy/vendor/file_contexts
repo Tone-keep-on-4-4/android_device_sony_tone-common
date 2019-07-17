@@ -34,6 +34,8 @@
 /data/vendor/location/xtra/socket_hal_xtra    u:object_r:location_socket:s0
 /data/vendor/location/xtra/socket_xtra        u:object_r:location_socket:s0
 /data/vendor/misc/audio/acdbdata/delta(/.*)?       u:object_r:acdbdelta_vendor_data_file:s0
+/data/vendor/etc/bluetooth.*                  u:object_r:bluetooth_vendor_data_file:s0
+/data/vendor/etc/wlan.*                       u:object_r:wifi_vendor_data_file:s0
 /lta-label                                    u:object_r:rootfs:s0
 /mnt/qns(/.*)?                                u:object_r:qns_file:s0
 /mnt/vendor/persist/wlan(/.*)?                u:object_r:persist_wlan_file:s0
