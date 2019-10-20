@@ -368,9 +368,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+
 # Shim
 PRODUCT_PACKAGES += \
-    libtone_shim
+    libtone_shim \
+    libbase_shim
 
 # Telephony
 PRODUCT_PACKAGES += \

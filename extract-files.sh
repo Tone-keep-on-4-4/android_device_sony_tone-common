@@ -70,6 +70,13 @@ function blob_fixup() {
     vendor/bin/secd)
         sed -i "s/\/system\/etc\/firmware/\/vendor\/etc\/firmware/g" "${2}"
         ;;
+	vendor/bin/imsrcsd)
+		patchelf --add-needed "libbase_shim.so" "${2}"
+		;;
+
+	vendor/lib64/lib-uceservice.so)
+		patchelf --add-needed "libbase_shim.so" "${2}"
+	;;
     esac
 }
 
