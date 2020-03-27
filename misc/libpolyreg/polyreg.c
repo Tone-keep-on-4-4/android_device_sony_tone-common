@@ -25,8 +25,8 @@
 #include <math.h>
 #include <string.h>
 #include <sys/types.h>
-#include "polyreg.h"
 
+#include <libpolyreg/polyreg.h>
 
 #include <private/android_filesystem_config.h>
 #include <utils/Log.h>
