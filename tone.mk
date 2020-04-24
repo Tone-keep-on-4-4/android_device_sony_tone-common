@@ -435,6 +435,7 @@ PRODUCT_PACKAGES += \
     libcld80211 \
     libwifi-hal-bcm \
     libwpa_client \
+    WifiOverlay \
     wpa_supplicant \
     wpa_supplicant.conf
 
