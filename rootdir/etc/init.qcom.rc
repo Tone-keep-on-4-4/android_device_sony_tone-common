@@ -82,6 +82,8 @@ on fs
     # Start HW service manager early
     start hwservicemanager
 
+    write /dev/ipa 1
+
 on late-fs
     # boot time fs tune
     write /sys/block/sda/queue/iostats 0
