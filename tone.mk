@@ -377,7 +377,8 @@ PRODUCT_COPY_FILES += \
 # Shim
 PRODUCT_PACKAGES += \
     libtone_shim \
-    libbase_shim
+    libbase_shim \
+    libcutils_shim
 
 # Telephony
 PRODUCT_PACKAGES += \
