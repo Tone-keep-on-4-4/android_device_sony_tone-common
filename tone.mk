@@ -136,6 +136,13 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
 
+PRODUCT_PACKAGES += \
+    libmmcamera_interface \
+    libmmjpeg_interface \
+    libmmlib2d_interface \
+    libmm-qcamera \
+    libqomx_core
+
 # Charger
 PRODUCT_PACKAGES += charger_res_images
 
