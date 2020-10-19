@@ -129,6 +129,13 @@ on post-fs-data
     mkdir /data/vendor/bluetooth 0770 bluetooth bluetooth
     mkdir /data/vendor/ramdump/bluetooth 0770 bluetooth bluetooth
 
+    # Create PERFD deamon related dirs
+    mkdir /data/misc/perfd 0755 root system
+    chmod 2755 /data/misc/perfd
+    mkdir /data/system/perfd 0770 root system
+    rm /data/system/perfd/default_values
+    chmod 2770 /data/system/perfd
+
     # Create the directories used by the Wireless subsystem
     mkdir /data/vendor/wifi 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
