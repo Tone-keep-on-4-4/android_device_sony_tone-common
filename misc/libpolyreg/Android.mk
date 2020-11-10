@@ -21,6 +21,7 @@ LOCAL_COPY_HEADERS := ./polyreg.h
 include $(BUILD_COPY_HEADERS)
 
 include $(CLEAR_VARS)
+LOCAL_C_INCLUDES += $(TOP)/system/core/include
 LOCAL_SRC_FILES := polyreg.c
 LOCAL_SHARED_LIBRARIES := \
     libcutils \
