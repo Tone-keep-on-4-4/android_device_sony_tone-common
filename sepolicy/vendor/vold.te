@@ -1,1 +1,4 @@
 allowxperm vold loop_device:blk_file ioctl LOOP_GET_STATUS64;
+
+# For setting read_ahead_kb
+allow vold sysfs_mmc_host:file w_file_perms;
