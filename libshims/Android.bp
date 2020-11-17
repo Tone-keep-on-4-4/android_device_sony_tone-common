@@ -7,6 +7,15 @@ cc_library_shared {
     ],
 }
 
+cc_library_shared {
+    name: "libshim_binder",
+    proprietary: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "binder/PermissionCache.cpp",
+    ],
+}
+
 cc_library {
     name: "libbase_shim",
     srcs: ["logging.cpp"],

@@ -116,6 +116,10 @@ function blob_fixup() {
     vendor/lib64/libsettings.so)
         "${PATCHELF}" --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v28.so" "${2}"
         ;;
+
+    vendor/lib64/libtpm.so)
+        patchelf --add-needed "libshim_binder.so" "${2}"
+        ;;
     esac
 }
 
