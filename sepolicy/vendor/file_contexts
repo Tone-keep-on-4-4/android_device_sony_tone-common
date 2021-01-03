@@ -7,6 +7,12 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.sony_tone    u:object_r:hal_light_default_exec:s0
 /(system/vendor|vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.sony    u:object_r:hal_fingerprint_default_exec:s0
 
+#BT Firmare
+/bt_firmware(/.*)?        u:object_r:bt_firmware_file:s0
+
+# Firmware
+/firmware(/.*)?           u:object_r:firmware_file:s0
+
 # idd
 /rca(/.*)?                            u:object_r:idd_rca_file:s0
 /idd(/.*)?                            u:object_r:idd_data_file:s0
