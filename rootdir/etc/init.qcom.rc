@@ -123,6 +123,10 @@ on post-fs-data
     mkdir /data/misc/camera 0770 camera camera
     mkdir /data/vendor/camera 0770 camera camera
 
+    # Create directory for tftp
+    mkdir /data/vendor/tombstones 0771 system system
+    mkdir /data/vendor/tombstones/rfs 0771 system system
+
     mkdir /data/vendor/ramdump 0771 root system
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
     mkdir /data/vendor/misc/bluetooth 0770 bluetooth bluetooth
@@ -490,6 +494,7 @@ service vendor.rmt_storage /vendor/bin/rmt_storage
 service vendor.tftp_server /vendor/bin/tftp_server
     class core
     user root
+    group root system
     writepid /dev/cpuset/system-background/tasks
 
 on property:vendor.wc_transport.start_hci=true
