@@ -180,7 +180,7 @@ PRODUCT_PACKAGES += \
     libtinyxml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/calib.cfg:system/etc/calib.cfg
+    $(LOCAL_PATH)/configs/calib.cfg:vendor/etc/calib.cfg
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -382,7 +382,7 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 PRODUCT_PACKAGES += \
-    vndk-sp
+    vndk_package
 
 # Vibrator
 PRODUCT_PACKAGES += \

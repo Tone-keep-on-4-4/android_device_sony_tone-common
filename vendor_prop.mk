@@ -91,7 +91,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Display (Qualcomm AD)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qcom.ad=1 \
-    ro.qcom.ad.calib.data=/system/etc/calib.cfg \
+    ro.qcom.ad.calib.data=/vendor/etc/calib.cfg \
     ro.qcom.ad.sensortype=2 \
     ro.vendor.display.cabl=0
 
@@ -143,10 +143,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     ro.vendor.qti.sys.fw.bg_apps_limit=60
-
-# Priv-app permissions whitelist
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.control_privapp_permissions=enforce
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
