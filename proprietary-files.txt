@@ -821,16 +821,8 @@ vendor/lib/libnetmgr.so
 vendor/radio/qcril_database/qcril.db
 
 # Sensors
-lib64/libqmi_cci_system.so:vendor/lib64/libqmi_cci_system.so
-lib/libqmi_cci_system.so:vendor/lib/libqmi_cci_system.so
-vendor/lib64/libsdsprpc.so
-vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.ssc.so
-vendor/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so
-vendor/lib/libsdsprpc.so
-vendor/lib/sensor_calibrate.so
 vendor/lib/sensors.ssc.so
-vendor/lib/vendor.qti.hardware.sensorscalibrate@1.0.so
 
 # Sensors - from op3 - PKQ1.181203.001
 vendor/bin/sensors.qti|34b67b318750daa1170730f4ffc0a9b46ee1777b
