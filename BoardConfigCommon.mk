@@ -192,10 +192,6 @@ TARGET_LD_SHIM_LIBS := \
   /system/lib64/lib-imsvt.so|libtone_shim.so \
   /system/lib64/lib-imsvideocodec.so|libtone_shim.so
 
-# Vendor init
-TARGET_INIT_VENDOR_LIB := libinit_msm8996
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8996
-
 # Wifi
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
