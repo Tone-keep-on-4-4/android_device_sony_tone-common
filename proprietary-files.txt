@@ -757,6 +757,7 @@ vendor/lib64/libqmi_cci.so
 vendor/lib64/libqmi_client_helper.so
 vendor/lib64/libqmi_client_qmux.so
 vendor/lib64/libqmi_common_so.so
+vendor/lib64/libsmemlog.so
 vendor/lib64/libqmi_csi.so
 vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmi.so
@@ -773,6 +774,7 @@ vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
+vendor/lib/libsmemlog.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmi.so
@@ -840,27 +842,14 @@ vendor/bin/mlog_qmi_service
 vendor/bin/sct_service
 
 # TA
-lib/libMiscTAApi.so:vendor/lib/libMiscTAApi.so
-lib/libMiscTaWrapper.so:vendor/lib/libMiscTaWrapper.so
-lib/vendor.somc.hardware.miscta@1.0.so:vendor/lib/vendor.somc.hardware.miscta@1.0.so
-lib/vendor.semc.hardware.drm@1.0.so:vendor/lib/vendor.semc.hardware.drm@1.0.so
-lib64/vendor.semc.hardware.drm@1.0.so:vendor/lib64/vendor.semc.hardware.drm@1.0.so
-lib64/libMiscTAApi.so:vendor/lib64/libMiscTAApi.so
-lib64/libMiscTaWrapper.so:vendor/lib64/libMiscTaWrapper.so
-lib64/vendor.somc.hardware.miscta@1.0.so:vendor/lib64/vendor.somc.hardware.miscta@1.0.so
 # tad_static moved from rootfs to vendor
 vendor/bin/tad_static|f9eeb8583656ad2a79752c8de69e144507f8b953
 vendor/bin/taimport
-vendor/bin/updatemiscta
-vendor/bin/hw/vendor.somc.hardware.miscta@1.0-service
 vendor/bin/ta_qmi_service
 -vendor/lib/libmiscta.so
 vendor/lib/libta.so
-vendor/lib/libsmemlog.so
-vendor/lib64/libsmemlog.so
 -vendor/lib64/libmiscta.so
 vendor/lib64/libta.so
-vendor/lib64/vendor.somc.hardware.miscta@1.0_vendor.so
 
 # Thermal
 vendor/bin/thermal-engine

@@ -726,19 +726,6 @@ service taimport /vendor/bin/taimport
     group system drmrpc
     oneshot
 
-# Misc TA service
-service vendor.somc.hardware.miscta-1-0 /vendor/bin/hw/vendor.somc.hardware.miscta@1.0-service
-   class hal oem_2993
-   user system
-   group system
-
-# updatemiscta
-service updatemiscta /vendor/bin/updatemiscta
-    class main
-    user oem_2991
-    group oem_2993
-    oneshot
-
 on property:service.usb.otg.switch=check
     write /sys/module/qpnp_smbcharger/parameters/start_id_polling 1
     setprop service.usb.otg_switch check_done
