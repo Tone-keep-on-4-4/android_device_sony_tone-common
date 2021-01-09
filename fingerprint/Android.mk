@@ -11,31 +11,8 @@ LOCAL_SRC_FILES := \
     ion_buffer.c \
     common.c
 
-ifeq ($(filter-out loire tone,$(SOMC_PLATFORM)),)
 LOCAL_SRC_FILES += fpc_imp_loire_tone.c
 HAS_FPC := true
-endif
-
-ifeq ($(filter-out yoshino,$(SOMC_PLATFORM)),)
-LOCAL_SRC_FILES += fpc_imp_yoshino_nile_tama.c
-HAS_FPC := true
-endif
-
-ifeq ($(filter-out nile,$(SOMC_PLATFORM)),)
-LOCAL_SRC_FILES += fpc_imp_yoshino_nile_tama.c
-HAS_FPC := true
-LOCAL_CFLAGS += -DUSE_FPC_NILE
-endif
-
-ifeq ($(filter-out tama,$(SOMC_PLATFORM)),)
-LOCAL_SRC_FILES += fpc_imp_yoshino_nile_tama.c
-HAS_FPC := true
-LOCAL_CFLAGS += -DUSE_FPC_TAMA
-endif
-
-ifeq ($(filter-out ganges,$(SOMC_PLATFORM)),)
-LOCAL_CFLAGS += -DUSE_FPC_GANGES
-endif
 
 ifneq ($(HAS_FPC),true)
 # This file heavily depends on fpc_ implementations from the
