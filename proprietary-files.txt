@@ -822,9 +822,7 @@ vendor/radio/qcril_database/qcril.db
 
 # Sensors
 lib64/libqmi_cci_system.so:vendor/lib64/libqmi_cci_system.so
-lib64/sensors.finger-pickup.so:vendor/lib64/sensors.finger-pickup.so
 lib/libqmi_cci_system.so:vendor/lib/libqmi_cci_system.so
-lib/sensors.finger-pickup.so:vendor/lib/sensors.finger-pickup.so
 vendor/lib64/libsdsprpc.so
 vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.ssc.so
