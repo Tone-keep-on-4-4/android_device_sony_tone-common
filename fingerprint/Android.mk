@@ -1,5 +1,3 @@
-ifeq ($(PRODUCT_PLATFORM_SOD),true)
-ifneq ($(TARGET_DEVICE_NO_FPC), true)
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -70,5 +68,3 @@ LOCAL_CFLAGS += \
     -std=c++1z
 
 include $(BUILD_EXECUTABLE)
-endif
-endif # PRODUCT_PLATFORM_SOD
