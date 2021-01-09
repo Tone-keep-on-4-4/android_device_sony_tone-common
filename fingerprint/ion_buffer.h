@@ -8,7 +8,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
-#include <ion/ion.h>
+#include "ion.h"
 #include <string.h>
 #include <sys/cdefs.h>
 #include <sys/ioctl.h>
