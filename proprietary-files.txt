@@ -649,10 +649,6 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 vendor/lib64/hw/keystore.msm8996.so
 vendor/lib/hw/keystore.msm8996.so
 
-# Lights
-vendor/lib64/liblights-core.so
-vendor/lib/liblights-core.so
-
 # Listen - from gemini - OPR1.170623.032
 vendor/lib64/hw/sound_trigger.primary.msm8996.so|0e0c51d1a031faf743a2228c312badfbb54e63e7
 vendor/lib/hw/sound_trigger.primary.msm8996.so|cc344b490c39312a7a0285ec41564211daee8052
