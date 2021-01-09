@@ -609,30 +609,6 @@ vendor/firmware/a530_zap.b02
 vendor/firmware/a530_zap.elf
 vendor/firmware/a530_zap.mdt
 
-# IDD
-lib/libidd-plat.so:vendor/lib/libidd-plat.so
-lib/vendor.semc.system.idd@1.0.so:vendor/lib/vendor.semc.system.idd@1.0.so
-lib64/libidd-plat.so:vendor/lib64/libidd-plat.so
-lib64/vendor.semc.system.idd@1.0.so:vendor/lib64/vendor.semc.system.idd@1.0.so
-vendor/bin/iddd
-vendor/bin/hw/vendor.semc.system.idd@1.0-service
-vendor/bin/hw/vendor.semc.system.idd.fallback@1.0-service
-vendor/bin/idd-logreader
-vendor/etc/iddd.conf
-vendor/etc/security/idd_config.pem
-vendor/etc/security/idd_report.pem
-vendor/lib/libprotobuf-c.so
-vendor/lib/libprotobuf-c.so
-vendor/lib/libidd.so
-vendor/lib/vendor.semc.system.idd@1.0_vendor.so
-vendor/lib64/vendor.semc.system.idd@1.0_vendor.so
-vendor/lib64/libidd.so
-vendor/lib/libprotobuf-cpp-2.3.0-lite.so
-vendor/lib64/libjansson.so
-vendor/lib64/libprotobuf-c.so
-vendor/lib64/libprotobuf-cpp-2.3.0-lite.so
-vendor/lib64/vendor.semc.system.idd.fallback@1.0_vendor.so
-
 # IMS
 etc/permissions/qti-vzw-ims-internal.xml
 lib64/com.qualcomm.qti.imscmservice@1.0.so
@@ -843,35 +819,6 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so
 vendor/lib/libmdmdetect.so
 vendor/lib/libnetmgr.so
 vendor/radio/qcril_database/qcril.db
-
-# SECD
-lib64/libdevice_security_client.so:vendor/lib64/libdevice_security_client.so
-lib64/libtpm.so:vendor/lib64/libtpm.so
-lib64/vendor.semc.hardware.secd@1.0.so:vendor/lib64/vendor.semc.hardware.secd@1.0.so
-vendor/bin/hw/vendor.semc.hardware.secd@1.0-service
-vendor/bin/secd
-vendor/lib64/lib_asb_tee.so
-vendor/lib64/libcredential-manager-service.so
-vendor/lib64/libdevice_security.so
-vendor/lib64/libdevice_security_vendor.so
-vendor/lib64/libplstorage.so
-vendor/lib64/libprotobuf-c.so
-vendor/lib64/libstartup-reason.so
-vendor/lib64/libsuntory.so
-vendor/lib64/libsuntory_utils.so
-vendor/lib64/libta_drm_ext.so|5e180b417ae93862862219d2a1be0a4f708a5394
-vendor/lib64/libtee.so
-vendor/lib64/vendor.semc.hardware.secd@1.0_vendor.so
-vendor/lib/lib_asb_tee.so
-vendor/lib/libcredential-manager-service.so
-vendor/lib/libdevice_security.so
-vendor/lib/libdevice_security_vendor.so
-vendor/lib/libplstorage.so
-vendor/lib/libprotobuf-c.so
-vendor/lib/libsuntory.so
-vendor/lib/libsuntory_utils.so
-vendor/lib/libta_drm_ext.so|def802a5eef691a9b48a191f56116c8da900fdd3
-vendor/lib/vendor.semc.hardware.secd@1.0_vendor.so
 
 # Sensors
 lib64/libqmi_cci_system.so:vendor/lib64/libqmi_cci_system.so

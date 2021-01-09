@@ -79,16 +79,6 @@ on fs
     chown oem_2997 oem_2997 /dev/block/mmcblk0p1
     chmod 0770 /dev/block/mmcblk0p1
 
-    # Configure idd/rca directories
-    chown oem_2987 oem_2987 /idd
-    chmod 0751 /idd
-    exec /vendor/bin/rm -r /idd/lost+found
-    symlink /idd /mnt/idd
-    chown oem_2987 oem_2987 /rca
-    chmod 0750 /rca
-    exec /vendor/bin/rm -r /rca/lost+found
-    symlink /rca /mnt/rca
-
     # Start HW service manager early
     start hwservicemanager
 
@@ -738,39 +728,6 @@ service updatemiscta /vendor/bin/updatemiscta
     user oem_2991
     group oem_2993
     oneshot
-
-# Sony IDD services
-service iddd /vendor/bin/iddd
-    class core
-    user oem_2987
-    group oem_2987 log inet oem_2993
-    writepid /dev/cpuset/system-background/tasks
-
-service vendor.semc.system.idd-1-0 /vendor/bin/hw/vendor.semc.system.idd@1.0-service
-    class hal
-    user oem_2987
-    group oem_2987 log inet oem_2993
-    writepid /dev/cpuset/system-background/tasks
-
-service vendor.semc.system.idd.fallback-1-0 /vendor/bin/hw/vendor.semc.system.idd.fallback@1.0-service
-    class hal
-    user oem_2987
-    group oem_2987 log inet oem_2993
-    writepid /dev/cpuset/system-background/tasks
-
-# Sony security daemon
-service secd /vendor/bin/secd
-    class main
-    user system
-    group system
-    socket secd_devsec_sock stream 0660 system oem_2996
-    socket secd_credmgr_sock stream 0660 system oem_2996
-    setenv LD_PRELOAD libta_drm_ext.so
-
-service vendor.semc.hardware.secd-1-0 /vendor/bin/hw/vendor.semc.hardware.secd@1.0-service
-    class hal
-    user system
-    group system
 
 on property:service.usb.otg.switch=check
     write /sys/module/qpnp_smbcharger/parameters/start_id_polling 1
