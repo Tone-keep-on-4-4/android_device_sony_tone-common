@@ -119,9 +119,6 @@ on post-fs-data
     mkdir /data/misc/stargate/calib_test 0770 system system
     mkdir /data/misc/stargate/database 0770 system system
 
-    # Create directory for tftp
-    mkdir /data/vendor/tombstones 0771 system system
-
     # Create folders for camera
     mkdir /data/misc/camera 0770 camera camera
     mkdir /data/vendor/camera 0770 camera camera

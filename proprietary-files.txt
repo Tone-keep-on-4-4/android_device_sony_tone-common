@@ -759,8 +759,6 @@ framework/QtiTelephonyServicelibrary.jar
 vendor/bin/ATFWD-daemon
 vendor/bin/netmgrd
 vendor/bin/qti
-vendor/bin/rmt_storage
-vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
 vendor/etc/data/netmgr_config.xml
 vendor/lib64/libconfigdb.so
@@ -788,6 +786,12 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so
 vendor/lib/libmdmdetect.so
 vendor/lib/libnetmgr.so
 vendor/radio/qcril_database/qcril.db
+
+# RIL - from LA.UM.7.6.r1-02800-89xx.0 - daisy 9/PKQ1.180917.001/V10.0.1.0PDLMIFJ
+vendor/bin/rmt_storage|346ef281e829109ba11af912509309e520351ef9
+vendor/bin/tftp_server|05a9c0e0e691e534e703bded4a99083d25a26ebb
+vendor/lib64/libqrtr.so|83676274fde1056a0507b4100a3a5423f5af5021
+vendor/lib64/libqsocket.so|3799e723be152c31c270f93a64e2865c0d9e86c4
 
 # Sensors
 vendor/lib64/sensors.ssc.so
