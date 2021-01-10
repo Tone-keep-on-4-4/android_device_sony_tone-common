@@ -78,21 +78,22 @@ lib/com.qualcomm.qti.ant@1.0.so
 #vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so
 vendor/lib64/com.qualcomm.qti.ant@1.0_vendor.so
 
-# Audio libraries
-etc/permissions/audiosphere.xml
-framework/audiosphere.jar
+# Audio - From daisy' xiaomi/daisy/daisy_sprout:10/QKQ1.191002.002/V11.0.7.0.QDLMIX
+vendor/lib/libacdb-fts.so|9fb9fe8f1e22e38e41f1517b8f206a50bbb24419
+vendor/lib/libacdbloader.so|f33941720463b3c8215fc644b7d638c6d8ab74c7
+vendor/lib/libacdbrtac.so|f997dfef5413873af88bd8636a501401e9ea9631
+vendor/lib/libadiertac.so|6cfa3c70f01617a944ed2d8512189400ccdec21e
+vendor/lib/libaudcal.so|8c4d9a610c5cce20dee9721feb4864ea2470caf2
+vendor/lib/libaudioalsa.so|1455df26b622c518c04d7f54746683ed96aaa74f
+vendor/lib/libaudioparsers.so|4b980c4392b6e800fb23213a0daaa83b35c04051
+vendor/lib/libqtigef.so|fbedb509c61ff1a7d6e9c4a099af346ca781430a
+
+# Audio soundfx
 vendor/lib64/soundfx/libasphere.so
 vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 vendor/lib64/soundfx/libshoebox.so
-vendor/lib64/libacdb-fts.so
-vendor/lib64/libacdbloader.so
-vendor/lib64/libacdbrtac.so
-vendor/lib64/libadiertac.so
-vendor/lib64/libaudcal.so
-vendor/lib64/libaudioalsa.so
-vendor/lib64/libqtigef.so
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
@@ -100,14 +101,6 @@ vendor/lib/soundfx/libqcvirt.so
 vendor/lib/soundfx/libshoebox.so
 vendor/lib/soundfx/libsonypostprocbundle.so
 vendor/lib/soundfx/libsonysweffect.so
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libadm.so
-vendor/lib/libaudcal.so
-vendor/lib/libaudioalsa.so
-vendor/lib/libqtigef.so
 
 # Audio effects
 vendor/etc/sony_effect/clearphase_sp_param.bin
