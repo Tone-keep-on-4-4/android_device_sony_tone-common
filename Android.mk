@@ -50,11 +50,7 @@ $(DSP_MOUNT_POINT):
 	@echo "Creating $(DSP_MOUNT_POINT)"
 	@mkdir -p $(TARGET_OUT_VENDOR)/dsp
 
-$(ODM_MOUNT_POINT):
-	@echo "Creating $(ODM_MOUNT_POINT)"
-	@mkdir -p $(TARGET_OUT_VENDOR)/odm
-
-ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MOUNT_POINT) $(BT_FIRMWARE_MOUNT_POINT) $(DSP_MOUNT_POINT) $(ODM_MOUNT_POINT)
+ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MOUNT_POINT) $(BT_FIRMWARE_MOUNT_POINT) $(DSP_MOUNT_POINT)
 
 ADSP_IMAGES := adsp.b00 adsp.b01 adsp.b02 adsp.b03 adsp.b04 adsp.b05 adsp.b06 adsp.b08 adsp.b09 adsp.mdt
 ADSP_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(ADSP_IMAGES)))
@@ -85,16 +81,6 @@ $(VENUS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /vendor/firmware_mnt/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(VENUS_SYMLINKS)
-
-ODM_LINKS := lib lib64 firmware
-ODM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/odm/,$(notdir $(ODM_LINKS)))
-$(ODM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "ODM to vendor link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /vendor/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(VENUS_SYMLINKS) $(ODM_SYMLINKS)
 
 IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
 IMS_SYMLINKS := $(addprefix $(TARGET_OUT_APPS_PRIVILEGED)/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
