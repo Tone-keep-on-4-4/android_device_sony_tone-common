@@ -66,11 +66,12 @@ on fs
     # Set permissions for persist partition
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
+    mkdir /mnt/vendor/persist/alarm 0770 system system
     mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
     mkdir /mnt/vendor/persist/bms 0700 root system
     mkdir /mnt/vendor/persist/data 0700 system system
     mkdir /mnt/vendor/persist/display 0770 system graphics
-    mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
+    mkdir /mnt/vendor/persist/qc_senseid 0700 system system
     mkdir /mnt/vendor/persist/time 0770 system system
     restorecon_recursive /mnt/vendor/persist
 
@@ -85,12 +86,9 @@ on fs
 on late-fs
     # boot time fs tune
     write /sys/block/sda/queue/iostats 0
-    write /sys/block/sda/queue/scheduler cfq
     write /sys/block/sda/queue/iosched/slice_idle 0
     write /sys/block/sda/queue/read_ahead_kb 2048
     write /sys/block/sda/queue/nr_requests 256
-    write /sys/block/dm-0/queue/read_ahead_kb 2048
-    write /sys/block/dm-1/queue/read_ahead_kb 2048
 
 on post-fs
     # start clearpad_post_probe when filesystem is available for fwflash
@@ -102,10 +100,40 @@ on post-fs
     write /dev/ipa 1
 
 on post-fs-data
+
+    # Sensors
+    chown system system /mnt/vendor/persist/sensors/gyro_sensitity_cal
+
+    chown system system /mnt/vendor/persist/sensors
+    chown system system /mnt/vendor/persist/sensors/sns.reg
+    chown system system /mnt/vendor/persist/sensors/sensors_list.txt
+    chown system system /mnt/vendor/persist/sensors/registry
+    chown system system /mnt/vendor/persist/sensors/registry/registry
+    chown system system /mnt/vendor/persist/sensors/registry/registry/sensors_registry
+    chown system system /mnt/vendor/persist/sensors/sensors_settings
+    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_config
+    chown system system /mnt/vendor/persist/sensors/registry/config
+    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
+
+    # /dev/sensors only supports an ioctl to get the current SLPI timestamp;
+    # allow the sensors daemon to perform this as non-root
+    chown root system /dev/sensors
+    chmod 0660 /dev/sensors
+
+    # Create vpp directory
+    mkdir /mnt/vendor/persist/vpp 0770 media media
+
+    # Create hvdcp_opti directory
+    mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
+
+    # msm specific files that need to be created on /data
     mkdir /data/vendor/misc 01771 system system
 
     # Create directory used by display clients
     mkdir /data/vendor/display 0770 system graphics
+
+    # Change lm related dirs
+    mkdir /data/vendor/lm 0700 root root
 
     # Create directory used by media clients
     mkdir /data/vendor/media 0770 mediacodec media
@@ -115,6 +143,12 @@ on post-fs-data
     mkdir /data/misc/stargate/bg_estimation 0770 system system
     mkdir /data/misc/stargate/calib_test 0770 system system
     mkdir /data/misc/stargate/database 0770 system system
+
+    # Create /data/vendor/tzstorage directory for SFS listener
+    mkdir /data/vendor/tzstorage 0770 system system
+
+    # Create directory for apps access via QTEEConnector
+    mkdir /data/vendor/qtee 0770 system system
 
     # Create directory for tftp
     mkdir /data/vendor/tombstones 0771 system system
@@ -131,8 +165,16 @@ on post-fs-data
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/vendor/wifi 0770 wifi wifi
+    mkdir /data/vendor/wifi/sockets 0770 wifi wifi
+    mkdir /data/vendor/wifi/hostapd 0770 wifi wifi
+    mkdir /data/vendor/wifi/hostapd/ctrl 0770 wifi wifi
+    mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
+
+    # Create port-bridge log dir
+    mkdir /data/vendor/port_bridge 0770 radio radio
+    chmod 0770 /data/vendor/port_bridge
 
     # Create netmgr log dir
     mkdir /data/vendor/netmgr 0770 radio radio
@@ -142,22 +184,48 @@ on post-fs-data
     mkdir /data/vendor/ipa 0770 radio radio
     chmod 0770 /data/vendor/ipa
 
+    #Create QTI dir for logs
+    mkdir /data/vendor/dataqti 0770 radio radio
+    chmod 0770 /data/vendor/dataqti
+
     # Create the directories used by CnE subsystem
     mkdir /data/vendor/connectivity 0771 radio radio
     chown radio radio /data/vendor/connectivity
 
     # Create directory used by audio subsystem
-    mkdir /data/vendor/misc/audio 0770 audio audio
+    mkdir /data/vendor/audio 0770 audio audio
 
     # Create directory for audio delta files
-    mkdir /data/vendor/misc/audio/acdbdata 0770 media audio
-    mkdir /data/vendor/misc/audio/acdbdata/delta 0770 media audio
+    mkdir /data/vendor/audio/acdbdata 0770 media audio
+    mkdir /data/vendor/audio/acdbdata/delta 0770 media audio
+
+    # LEGACY: Create directory used by audio subsystem
+    mkdir /data/misc/audio 0770 audio audio
+
+    # LEGACY: Create directory for audio delta files
+    mkdir /data/misc/audio/acdbdata 0770 media audio
+    mkdir /data/misc/audio/acdbdata/delta 0770 media audio
 
     # Create directory for radio
     mkdir /data/vendor/radio 0770 system radio
 
     # Create directory for modem_config
     mkdir /data/vendor/modem_config 0570 radio root
+
+    # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
+    # We chown/chmod /persist again so because mount is run as root + defaults
+    chown root system /persist
+    chmod 0771 /persist
+    chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
+
+    # Chown polling nodes as needed from UI running on system server
+    chown system system /sys/devices/platform/msm_sdcc.1/polling
+    chown system system /sys/devices/platform/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_sdcc.3/polling
+    chown system system /sys/devices/platform/msm_sdcc.4/polling
 
     # Create directories for Location services
     mkdir /data/vendor/location 0770 gps gps
@@ -166,24 +234,6 @@ on post-fs-data
     mkdir /dev/socket/location 0770 gps gps
     mkdir /dev/socket/location/mq 0770 gps gps
     mkdir /dev/socket/location/xtra 0770 gps gps
-
-    # SSC/SLPI sensors
-    mkdir /mnt/vendor/persist/sensors
-    chown root system /mnt/vendor/persist/sensors
-    chmod 0775 /mnt/vendor/persist/sensors
-    chown root system /mnt/vendor/persist/sensors/sensors_settings
-    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
-    chown root system /mnt/vendor/persist/sensors/sns.reg
-    chmod 0664 /mnt/vendor/persist/sensors/sns.reg
-    chown root system /mnt/vendor/persist/PRSensorData.txt
-    chmod 0660 /mnt/vendor/persist/PRSensorData.txt
-    chown root system /mnt/vendor/persist/PSensor3cm_ct.txt
-    chmod 0660 /mnt/vendor/persist/PSensor3cm_ct.txt
-
-    # /dev/sensors only supports an ioctl to get the current SLPI timestamp;
-    # allow the sensors daemon to perform this as non-root
-    chown root system /dev/sensors
-    chmod 0660 /dev/sensors
 
     # Create /data/vendor/time folder for time-services
     mkdir /data/vendor/time 0700 system system
@@ -213,6 +263,11 @@ on post-fs-data
     chown radio radio /data/vendor/radio/copy_complete
     chmod 0660 /data/vendor/radio/copy_complete
 
+    # copy prebuilt qcril.db files always
+    copy /vendor/radio/qcril_database/qcril.db /data/vendor/radio/qcril_prebuilt.db
+    chown radio radio /data/vendor/radio/qcril_prebuilt.db
+    chmod 0660 /data/vendor/radio/qcril_prebuilt.db
+
     # File flags for prebuilt ril db file
     write /data/vendor/radio/prebuilt_db_support 1
     chown radio radio /data/vendor/radio/prebuilt_db_support
@@ -224,15 +279,6 @@ on post-fs-data
     # Fingerprint data folder
     mkdir /data/fpc 0770 system system
 
-    # IDD setup
-    mkdir /idd/lost+found 0770 root root
-    mkdir /idd/output 0755 oem_2987 oem_2987
-    mkdir /idd/socket 0711 oem_2987 oem_2987
-    mkdir /idd/startup-prober 0700 root root
-    restorecon_recursive /idd
-    mkdir /rca/plugins 0750 oem_2987 oem_2987
-    restorecon_recursive /rca
-
     # Sony security daemon
     mkdir /mnt/vendor/persist/pc/ 0770 radio system
     mkdir /data/credmgr 0770 system oem_2996
@@ -243,6 +289,23 @@ on post-fs-data
     chmod 0770 /sys/devices/sony_camera_0/info
     chown cameraserver camera /sys/devices/sony_camera_1/info
     chmod 0770 /sys/devices/sony_camera_1/info
+
+    #Create SWAP related dirs
+    mkdir /data/vendor/swap 0770 root system
+    chmod 2770 /data/vendor/swap
+
+    # Create vpp directory
+    mkdir /data/vendor/vpp 0770 media media
+
+    #Create dir for TUI
+    mkdir /data/vendor/tui 0600 system drmrpc
+
+    # Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
+    start vendor.ipacm
+    start vendor.dataqti
+    start vendor.netmgrd
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -322,6 +385,7 @@ on boot
     mkdir /mnt/vendor/persist/alarm 0770 system system
     mkdir /mnt/vendor/persist/data/sfs 0700 system system
     mkdir /mnt/vendor/persist/data/tz 0700 system system
+    mkdir /mnt/vendor/persist/secnvm 0770 system system
     mkdir /mnt/vendor/persist/qc_senseid 0700 system system
     mkdir /mnt/vendor/persist/wlan_bt 0770 system system
     mkdir /mnt/vendor/persist/audio 0777 media audio
@@ -372,9 +436,6 @@ on boot
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
-
-    # Wifi firmware reload path
-    chown wifi wifi /sys/module/wlan/parameters/fwpath
 
     # for USB HOST
     chown system system /sys/module/qpnp_smbcharger/parameters/id_polling_timeout
@@ -475,7 +536,6 @@ service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
 service vendor.rmt_storage /vendor/bin/rmt_storage
     class core
     user root
-    group system wakelock
     shutdown critical
     ioprio rt 0
     writepid /dev/cpuset/system-background/tasks
@@ -484,6 +544,13 @@ service vendor.tftp_server /vendor/bin/tftp_server
     class core
     user root
     writepid /dev/cpuset/system-background/tasks
+
+service vendor.port-bridge /vendor/bin/port-bridge
+    class main
+    user radio
+    group radio system inet
+    disabled
+    oneshot
 
 on property:vendor.wc_transport.start_hci=true
     start vendor.start_hci_filter
@@ -507,27 +574,26 @@ service vendor.netmgrd /vendor/bin/netmgrd
     class main
     user root
     group root wifi wakelock radio inet
+    disabled
     writepid /dev/cpuset/system-background/tasks
 
 service vendor.ipacm /vendor/bin/ipacm
     class main
     user radio
     group radio inet
-    writepid /dev/cpuset/system-background/tasks
+    disabled
 
 service vendor.dataqti /vendor/bin/qti
     class main
     user radio
-    group radio oem_2901 diag usb
+    group radio oem_2901 diag usb net_admin
+    disabled
     writepid /dev/cpuset/system-background/tasks
 
 service vendor.sensors.qti /vendor/bin/sensors.qti
     class core
     user system
     group system
-    # Grants the ability for this daemon to bind IPC router ports so it can
-    # register QMI services
-    capabilities NET_BIND_SERVICE
     writepid /dev/cpuset/system-background/tasks
 
 on property:ro.vendor.use_data_netmgrd=false
@@ -538,6 +604,16 @@ on property:ro.vendor.use_data_netmgrd=false
 # but only if ro.data.large_tcp_window_size property is set.
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
+
+service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
+    class main
+    user radio
+    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+
+on property:persist.radio.multisim.config=dsds
+    enable vendor.ril-daemon2
 
 on property:sys.sysctl.tcp_adv_win_scale=*
     write /proc/sys/net/ipv4/tcp_adv_win_scale ${sys.sysctl.tcp_adv_win_scale}
@@ -576,6 +652,20 @@ service qcom-sh /vendor/bin/init.qcom.sh
     user root
     group root system radio
     oneshot
+
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user system
+    group system wakelock
+    capabilities BLOCK_SUSPEND WAKE_ALARM
+    writepid /dev/cpuset/system-background/tasks
+
+service vendor.charger /vendor/bin/charger
+    class charger
+    user system
+    group system graphics input
+    capabilities SYS_BOOT
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
@@ -618,19 +708,26 @@ service time_daemon /vendor/bin/time_daemon
     group root
     writepid /dev/cpuset/system-background/tasks
 
-# Start up peripheral manager
+service vendor.power_off_alarm /vendor/bin/power_off_alarm
+    class core
+    group system
+    disabled
+    oneshot
+
+# start up peripheral manager
 service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
     group system
+    ioprio rt 4
     writepid /dev/cpuset/system-background/tasks
 
 service vendor.per_proxy /vendor/bin/pm-proxy
     class core
     user system
     group system
-    writepid /dev/cpuset/system-background/tasks
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:init.svc.vendor.per_mgr=running
     start vendor.per_proxy
@@ -640,11 +737,11 @@ on property:sys.shutdown.requested=*
     stop vendor.ims_rtp_daemon
 
 service adsprpcd /vendor/bin/adsprpcd
-    class main
-    user media
-    group media
+   class main
+   user media
+   group media
 
-# imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
+# imsqmidaemon starts with root and UID will be downgraded to SYSTEM.
 service vendor.imsqmidaemon /vendor/bin/imsqmidaemon
     class main
     user system
@@ -665,15 +762,14 @@ on property:vendor.ims.QMI_DAEMON_STATUS=1
     start vendor.imsdatadaemon
 
 service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
-    class main
-    user system
-    group radio diag inet log
+   class main
+   user system
+   group radio diag inet log
 
 service vendor.imsrcsservice /vendor/bin/imsrcsd
-    class main
-    user system
-    group radio diag inet log
-    writepid /dev/cpuset/system-background/tasks
+   class main
+   user system
+   group radio diag inet log
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
     restart vendor.ims_rtp_daemon
@@ -690,6 +786,32 @@ on property:init.svc.surfaceflinger=restarting
 
 on property:slpi.restart=1
     write /sys/kernel/debug/msm_subsys/slpi restart
+
+service energy-awareness /vendor/bin/energy-awareness
+    class main
+    user root
+    group system
+    oneshot
+
+on property:persist.vendor.radio.atfwd.start=false
+    stop vendor.atfwd
+
+on property:vendor.radio.atfwd.start=false
+    stop vendor.atfwd
+
+on property:vold.decrypt=trigger_reset_main
+    stop audio-hal-2-0
+
+on property:vold.decrypt=trigger_shutdown_framework
+    stop audio-hal-2-0
+
+on property:vold.decrypt=trigger_restart_min_framework
+    start audio-hal-2-0
+
+on property:vold.decrypt=trigger_restart_framework
+    stop camera-provider-2-4
+    start camera-provider-2-4
+    start audio-hal-2-0
 
 # TA daemon
 service tad_static /vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16

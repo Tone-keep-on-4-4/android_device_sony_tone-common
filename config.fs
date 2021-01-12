@@ -13,8 +13,8 @@ value:2904
 [AID_VENDOR_ADPL_ODL]
 value:2905
 
-[AID_VENDOR_UPDATEMISCTA]
-value:2991
+[AID_VENDOR_QRTR]
+value:2906
 
 [AID_VENDOR_TRIMAREA]
 value:2993
@@ -24,9 +24,6 @@ value:2996
 
 [AID_VENDOR_TAD]
 value:2997
-
-[AID_VENDOR_TA_QMI]
-value:2998
 
 [vendor/bin/wcnss_filter]
 mode: 0755
@@ -92,7 +89,13 @@ caps: SETUID SETGID
 mode: 0755
 user:  AID_GPS
 group: AID_GPS
-caps: NET_BIND_SERVICE BLOCK_SUSPEND
+caps: NET_BIND_SERVICE BLOCK_SUSPEND WAKE_ALARM
+
+[vendor/bin/sensors.qti]
+mode: 0755
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: NET_BIND_SERVICE
 
 [firmware/]
 mode: 0771
