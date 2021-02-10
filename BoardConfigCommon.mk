@@ -191,6 +191,7 @@ WIFI_DRIVER_FW_PATH_AP      := "/vendor/etc/firmware/wlan/bcmdhd/fw_bcmdhd_apsta
 WIFI_DRIVER_FW_PATH_STA     := "/vendor/etc/firmware/wlan/bcmdhd/fw_bcmdhd.bin"
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
+WIFI_AVOID_IFACE_RESET_MAC_CHANGE := true
 
 # Inherit from the proprietary version
 -include vendor/sony/tone-common/BoardConfigVendor.mk
