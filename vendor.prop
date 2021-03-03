@@ -117,6 +117,10 @@ ro.vendor.qti.sys.fw.bg_apps_limit=60
 # Priv-app permissions whitelist
 ro.control_privapp_permissions=enforce
 
+# SoC
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=MSM8996
+
 # Radio
 persist.radio.multisim.config=dsds
 persist.vendor.data.iwlan.enable=true
