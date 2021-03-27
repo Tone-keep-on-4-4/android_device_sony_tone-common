@@ -1,0 +1,15 @@
+cc_library_shared {
+    name: "libtone_shim",
+    proprietary: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "ims.cpp",
+    ],
+}
+
+cc_library {
+    name: "libbase_shim",
+    srcs: ["logging.cpp"],
+    shared_libs: ["libbase"],
+    vendor: true
+}
