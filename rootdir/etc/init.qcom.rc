@@ -672,15 +672,18 @@ service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
     class main
     user system
     group radio diag inet log
+    disbled
 
 service vendor.imsrcsservice /vendor/bin/imsrcsd
     class main
     user system
     group radio diag inet log
     writepid /dev/cpuset/system-background/tasks
+    disabled
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
-    restart vendor.ims_rtp_daemon
+    start vendor.ims_rtp_daemon
+    start vendor.imsrcsservice
 
 service ppd /vendor/bin/mm-pp-dpps
     class hal
