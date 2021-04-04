@@ -109,6 +109,13 @@ function blob_fixup() {
     vendor/etc/permissions/qti-vzw-ims-internal.xml)
         sed -i -e 's|file="/system/vendor/|file="/vendor/|g' "${2}"
         ;;
+
+    vendor/lib64/libwvhidl.so)
+        patchelf --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+        ;;
+    vendor/lib64/libsettings.so)
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v28.so" "${2}"
+        ;;
     esac
 }
 
