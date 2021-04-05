@@ -188,7 +188,8 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     liboverlay \
     libqdMetaData.system \
-    libtinyxml
+    libtinyxml \
+    libvulkan
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calib.cfg:system/etc/calib.cfg
