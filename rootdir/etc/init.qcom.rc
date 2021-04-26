@@ -598,6 +598,23 @@ on property:init.svc.surfaceflinger=restarting
 on property:slpi.restart=1
     write /sys/kernel/debug/msm_subsys/slpi restart
 
+on charger
+    setprop persist.sys.usb.config mass_storage
+    start vendor.hvdcp_opti
+    setprop sys.usb.configfs 1
+    start vendor.power_off_alarm
+
+service vendor.power_off_alarm /vendor/bin/power_off_alarm
+    class core
+    group system
+    disabled
+    oneshot
+
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user root
+    group system wakelock
+
 # TA daemon
 service vendor.tad_static /vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16
     class core
