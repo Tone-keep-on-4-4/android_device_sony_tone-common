@@ -227,25 +227,10 @@ on post-fs-data
     # Fingerprint data folder
     mkdir /data/fpc 0770 system system
 
-    # IDD setup
-    mkdir /idd/lost+found 0770 root root
-    mkdir /idd/output 0755 oem_2987 oem_2987
-    mkdir /idd/socket 0711 oem_2987 oem_2987
-    mkdir /idd/startup-prober 0700 root root
-    restorecon_recursive /idd
-    mkdir /rca/plugins 0750 oem_2987 oem_2987
-    restorecon_recursive /rca
-
     # Sony security daemon
     mkdir /mnt/vendor/persist/pc/ 0770 radio system
     mkdir /data/credmgr 0770 system oem_2996
     mkdir /data/etc 0755 root shell
-
-    # Sony camera module
-    chown cameraserver camera /sys/devices/sony_camera_0/info
-    chmod 0770 /sys/devices/sony_camera_0/info
-    chown cameraserver camera /sys/devices/sony_camera_1/info
-    chmod 0770 /sys/devices/sony_camera_1/info
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB

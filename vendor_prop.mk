@@ -188,17 +188,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.df.iwlan_mux=9 \
     persist.data.df.dev_name=rmnet_usb0
 
-# SEMC props
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.semc.version.cust=1306-8087 \
-    ro.semc.version.cust_revision=GLOBALDS-LTE3D \
-    ro.semc.version.fs=GENERIC \
-    ro.semc.version.fs_revision=41.3.A.2.247 \
-    ro.semc.version.sw=1306-8087 \
-    ro.semc.version.sw_revision=41.3.A.2.247 \
-    ro.semc.version.sw_type=user \
-    ro.semc.version.sw_variant=GLOBALDS-LTE3D
-
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
