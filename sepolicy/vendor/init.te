@@ -5,3 +5,7 @@ allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
 
 # Allow init to mount on qns_file
 allow init { qns_file }:dir mounton;
+
+allow init {
+   sysfs_leds
+ }:file setattr;
