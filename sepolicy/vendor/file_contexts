@@ -20,6 +20,7 @@
 /dev/socket/qnsbsd                                        u:object_r:qns_socket:s0
 /dev/socket/tad                                           u:object_r:tad_socket:s0
 /dev/fingerprint                                          u:object_r:sysfs_fingerprint:s0
+/dev/pn54x                                                u:object_r:nfc_device:s0
 
 # Sys files
 /sys/class/qns(/.*)?                                                                    u:object_r:qns_sysfs:s0
