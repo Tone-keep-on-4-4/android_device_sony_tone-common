@@ -128,6 +128,8 @@ on post-fs-data
     mkdir /data/vendor/tombstones/rfs 0771 system system
 
     mkdir /data/vendor/bluetooth 0770 bluetooth bluetooth
+    # Create directory for taimport
+    mkdir /data/vendor/etc 0755 root shell
 
     # Create PERFD deamon related dirs
     mkdir /data/misc/perfd 0755 root system
@@ -235,7 +237,6 @@ on post-fs-data
     # Sony security daemon
     mkdir /mnt/vendor/persist/pc/ 0770 radio system
     mkdir /data/credmgr 0770 system oem_2996
-    mkdir /data/etc 0755 root shell
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -626,7 +627,7 @@ service vendor.mlog_qmi_service /vendor/bin/mlog_qmi_service
     group system wakelock drmrpc
 
 # TA import service
-service vendor.taimport /vendor/bin/taimport
+service vendor.taimport /vendor/bin/taimport_vendor
     class late_start
     user root
     group system drmrpc

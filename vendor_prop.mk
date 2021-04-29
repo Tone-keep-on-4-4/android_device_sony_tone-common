@@ -49,7 +49,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.hfp.client=1 \
     persist.bluetooth.avrcpversion=avrcp16 \
     ro.bluetooth.hfp.ver=1.7 \
-    ro.bt.bdaddr_path=/data/etc/bluetooth_bdaddr \
+    ro.bt.bdaddr_path=/data/vendor/etc/bluetooth_bdaddr \
     persist.vendor.bt.enable.splita2dp=false
 
 # Camera Debug
