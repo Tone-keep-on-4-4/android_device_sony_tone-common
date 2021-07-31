@@ -2,5 +2,10 @@
   {
     "repository": "android_kernel_sony_msm8996",
     "target_path": "kernel/sony/msm8996"
+  },
+  {
+    "repository": "LineageOS/android_hardware_sony_thermanager",
+    "target_path": "hardware/sony/thermanager",
+    "remote": "gh"
   }
 ]
