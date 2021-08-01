@@ -65,3 +65,4 @@
 
 # vendor services
 /(vendor|system/vendor)/bin/taimport_vendor                     u:object_r:taimport_vendor_exec:s0
+/(vendor|system/vendor)/bin/thermanager                         u:object_r:thermanager_exec:s0
