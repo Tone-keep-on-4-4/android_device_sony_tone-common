@@ -12,8 +12,13 @@ allow vendor_init {
   wpa_socket
 }:dir { create search getattr open read setattr ioctl write add_name remove_name rmdir relabelfrom };
 
-# Allow vendor_init to setattr on tad_block_device
+# Allow init to run restorecon on the TA block device
+allow vendor_init block_device:lnk_file relabelfrom;
 allow vendor_init tad_block_device:blk_file setattr;
+allow vendor_init tad_block_device:lnk_file relabelto;
+
+# Allow vendor_init to relabel unlabeled files and directories
+allow vendor_init unlabeled:{ dir file } { getattr relabelfrom };
 
 # Allow vendor_init to create /mnt/qns
 allow vendor_init tmpfs:dir { write add_name relabelfrom };
@@ -23,3 +28,11 @@ allow vendor_init unlabeled:{ dir file } { getattr relabelfrom };
 
 # Allow vendor init to set camera_prop
 set_prop(vendor_init, camera_prop)
+
+allow vendor_init {
+  vendor_debugfs_clk
+  proc_dirty
+  proc
+}:file w_file_perms;
+
+allow vendor_init default_prop:file read;

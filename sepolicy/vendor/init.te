@@ -9,3 +9,8 @@ allow init { qns_file }:dir mounton;
 allow init {
    sysfs_leds
  }:file setattr;
+
+# Allow init to create tad socket
+allow init tad_socket:sock_file create_file_perms;
+
+
