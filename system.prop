@@ -21,3 +21,6 @@ service.qti.ims.enabled=1
 telephony.lteOnCdmaDevice=1
 vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 vendor.service.qti.ims.enabled=1
+
+# System
+persist.sys.binary_xml=false
