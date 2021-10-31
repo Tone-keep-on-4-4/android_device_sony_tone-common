@@ -69,13 +69,8 @@ function blob_fixup() {
         ;;
 
     # Move telephony packages to /system_ext
-    system_ext/etc/permissions/com.qti.dpmframework.xml|system_ext/etc/permissions/dpmapi.xml|system_ext/etc/permissions/telephonyservice.xml)
+    system_ext/etc/permissions/com.qti.dpmframework.xml|system_ext/etc/permissions/dpmapi.xml)
         sed -i "s/\/system\/product\/framework\//\/system\/system_ext\/framework\//g" "${2}"
-        ;;
-
-    # Move telephony packages to /system_ext
-    system_ext/etc/permissions/qcrilhook.xml)
-        sed -i "s/\/product\/framework\//\/system\/system_ext\/framework\//g" "${2}"
         ;;
 
     # Provide shim for libdpmframework.so
@@ -85,33 +80,8 @@ function blob_fixup() {
         done
         ;;
 
-    # Patch blobs for VNDK
-    vendor/lib64/lib-dplmedia.so)
-        patchelf --remove-needed "libmedia.so" "${2}"
-        ;;
-
-    # Add shim for libbase LogMessage functions
-    vendor/bin/imsrcsd | vendor/lib64/lib-uceservice.so)
-        for  LIBBASE_SHIM in $(grep -L "libbase_shim.so" "${2}"); do
-            patchelf --add-needed "libbase_shim.so" "$LIBBASE_SHIM"
-        done
-        ;;
-
-    # Move ims libs to product
-    product/etc/permissions/com.qualcomm.qti.imscmservice.xml)
-        sed -i -e 's|file="/system/framework/|file="/product/framework/|g' "${2}"
-        ;;
-
-    # Move qti-vzw-ims-internal permission to vendor
-    vendor/etc/permissions/qti-vzw-ims-internal.xml)
-        sed -i -e 's|file="/system/vendor/|file="/vendor/|g' "${2}"
-        ;;
-
     vendor/lib64/libwvhidl.so)
         patchelf --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
-        ;;
-    vendor/lib64/libsettings.so)
-        "${PATCHELF}" --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v28.so" "${2}"
         ;;
 
     vendor/lib64/libtpm.so)

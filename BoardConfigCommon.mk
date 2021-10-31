@@ -161,6 +161,11 @@ TARGET_USES_MKE2FS := true
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/clearpad/wakeup_gesture"
 TARGET_USES_INTERACTION_BOOST := true
 
+# Device Properties
+TARGET_ODM_PROP := $(VENDOR_PATH)/odm.prop
+TARGET_SYSTEM_PROP := $(VENDOR_PATH)/system.prop
+TARGET_VENDOR_PROP := $(VENDOR_PATH)/vendor.prop
+
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 
@@ -172,6 +177,10 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 #Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)/releasetools
+
+# RIL
+ENABLE_VENDOR_RIL_SERVICE := true
+TARGET_USES_OLD_MNC_FORMAT := true
 
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := odm
