@@ -1,13 +1,4 @@
 cc_library_shared {
-    name: "libtone_shim",
-    proprietary: true,
-    defaults: ["hidl_defaults"],
-    srcs: [
-        "ims.cpp",
-    ],
-}
-
-cc_library_shared {
     name: "libshim_binder",
     proprietary: true,
     defaults: ["hidl_defaults"],
@@ -17,17 +8,22 @@ cc_library_shared {
 }
 
 cc_library {
-    name: "libbase_shim",
-    srcs: ["logging.cpp"],
-    shared_libs: ["libbase"],
-    vendor: true
-}
-
-cc_library {
     name: "libcutils_shim",
     srcs: [
         "strdup16to8.cpp",
         "strdup8to16.cpp",
     ],
     shared_libs: ["libcutils"],
+}
+
+// IMS
+cc_library_shared {
+    name: "libims-shim",
+    shared_libs: [
+        "libgui",
+        "libutils",
+    ],
+    srcs: [
+        "Surface.cpp"
+    ],
 }

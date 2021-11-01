@@ -87,6 +87,10 @@ function blob_fixup() {
     vendor/lib64/libtpm.so)
         patchelf --add-needed "libshim_binder.so" "${2}"
         ;;
+
+    system_ext/lib64/lib-imsvideocodec.so)
+        patchelf --add-needed "libims-shim.so" "${2}"
+        ;;
     esac
 }
 
