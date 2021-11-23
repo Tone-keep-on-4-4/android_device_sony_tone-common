@@ -3,6 +3,9 @@ ro.vendor.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.vendor.data.mode=concurrent
 
+# Dexopt
+dalvik.vm.dex2oat64.enabled=true
+
 # Telephony
 DEVICE_PROVISIONED=1
 persist.rild.nitz_long_ons_0=
