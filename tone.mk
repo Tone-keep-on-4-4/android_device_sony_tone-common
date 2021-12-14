@@ -20,6 +20,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/sony/tone-common/tone-common-vendor.mk)
 
+# APEX
+PRODUCT_COMPRESSED_APEX := false
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
