@@ -63,7 +63,7 @@ if [[ "$variant" == "F8331" ]]
 then
     $(echo "ro.sony.variant=${variant}" >> /oem/build.prop);
     $(echo "ro.telephony.default_network=9,1" >> /oem/build.prop);
-    $(echo "ro.product.model=XPeria XZ" >> /oem/build.prop);
+    $(echo "ro.product.model=Xperia XZ" >> /oem/build.prop);
     $(echo "ro.semc.product.model=F8331" >> /oem/build.prop);
     $(echo "ro.semc.version.sw=1302-9162" >> /oem/build.prop);
     $(echo "ro.semc.ms_type_id=PM-0980-BV" >> /oem/build.prop);
@@ -79,7 +79,7 @@ then
     $(echo "persist.radio.multisim.config=dsds" >> /oem/build.prop);
     $(echo "ro.telephony.ril.config=simactivation" >> /oem/build.prop);
     $(echo "ro.telephony.default_network=9,1" >> /oem/build.prop);
-    $(echo "ro.product.model=XPeria XZ DualSim" >> /oem/build.prop);
+    $(echo "ro.product.model=Xperia XZ DualSim" >> /oem/build.prop);
     $(echo "ro.semc.product.model=F8332" >> /oem/build.prop);
     $(echo "ro.semc.version.sw=1302-9162" >> /oem/build.prop);
     $(echo "ro.semc.ms_type_id=PM-0980-BV" >> /oem/build.prop);
@@ -92,7 +92,7 @@ elif [[ "$variant" == "F8131" ]]
 then
     $(echo "ro.sony.variant=${variant}" >> /oem/build.prop);
     $(echo "ro.telephony.default_network=9,1" >> /oem/build.prop);
-    $(echo "ro.product.model=XPeria XZ" >> /oem/build.prop);
+    $(echo "ro.product.model=Xperia X Performance" >> /oem/build.prop);
     $(echo "ro.semc.product.model=F8131" >> /oem/build.prop);
     $(echo "ro.semc.version.sw=1304-1564" >> /oem/build.prop);
     $(echo "ro.semc.version.sw_variant=R1E" >> /oem/build.prop);
