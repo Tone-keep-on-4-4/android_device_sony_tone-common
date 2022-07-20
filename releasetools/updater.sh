@@ -76,7 +76,7 @@ elif [[ "$variant" == "F8332" ]]
 then
     $(echo "ro.sony.variant=${variant}" >> /oem/build.prop);
     $(echo "persist.multisim.config=dsds" >> /oem/build.prop);
-    $(echo "persist.radio.multisim.config=dsds" >> /oem/build.prop);
+    $(echo "persist.vendor.radio.multisim.config=dsds" >> /oem/build.prop);
     $(echo "ro.telephony.ril.config=simactivation" >> /oem/build.prop);
     $(echo "ro.telephony.default_network=9,1" >> /oem/build.prop);
     $(echo "ro.product.model=Xperia XZ DualSim" >> /oem/build.prop);
