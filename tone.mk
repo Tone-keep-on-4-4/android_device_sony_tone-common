@@ -164,6 +164,7 @@ PRODUCT_PACKAGES += \
     init.class_main.sh \
     init.qcom.power.rc \
     init.qcom.usb.rc \
+    init.msm.usb.configfs.rc \
     ueventd.qcom.rc
 
 # Component overrides
